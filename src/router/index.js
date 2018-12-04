@@ -50,7 +50,7 @@ const router = (
 				<Route path="/chargeTutoria" component ={ChargeTutoria}/>
 				<Route path="/video/detail" component ={VideoDetail}/>
 				<Route path="/goods/detail" component ={GoodsDetail}/>
-				<Route path="/cart"render={()=>
+				<Route path="/cart" render={()=>
 					<Cart>
 						<Switch>
 							<Route path="/cart/coulist" component ={Coulist}/>
