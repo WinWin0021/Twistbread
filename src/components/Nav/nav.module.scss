@@ -1,0 +1,17 @@
+#Nav{
+	height: 60px;border-bottom: 1px solid #fbfbfb;
+	div{
+		background: pink;height: 100%;
+		ul{position: relative;
+			li{
+				float: left;width: 150px;line-height: 60px;font-size: 12px;
+				img{position: absolute;top:50%;transform:translateY(50%);}
+				// display: table-cell;vertical-align: middle;外面容器不能浮动,不能用在a里
+				p{margin-left: 40px;color: #333;}
+				i{width: 30px;height: 30px;border-radius: 50%;background: #eeeeee;display: block;position: absolute;top:50%;transform:translateY(50%);}
+			}
+			.liHover{color:#ff527d;}
+			.active_lrx{border:4px solid #ff527d;}
+		}
+	}
+}
