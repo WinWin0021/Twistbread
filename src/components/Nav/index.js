@@ -11,27 +11,39 @@ class Nav extends Component{
 		this.state={
 			navList:[],
 			isHover:false,
-			childrenList:[]
+			childrenList:[],
+			secondList:true
 		}
 	}
 
 	render(){
-		return <div id={css.Nav}>
-			<div className='container'>
-				<ul>
+		return <div id={css.Nav} >
+			<div className='container' id={css.list}>
+				<ul className={css.clear}>
 					{
 						this.state.navList.map((item)=>{
-							return <li  className="ant-dropdown-link"  key={item.gc_id} onClick={this.handelClick.bind(this,item.gc_id)} 
+							return <li  className="ant-dropdown-link"  key={item.gc_id} onClick={(e)=>this.handelClick.bind(this,item.gc_id,e)} 
 							onMouseOver={this.onMouseOver.bind(this,item.gc_id,item)}
 							onMouseOut={this.onMouseOut.bind(this)}  >
-									<NavLink to='/category' replace activeClassName="active_lrx">
+									<NavLink to='/category' replace activeClassName="active_lrx" className={css.box}>
 										<img src={item.pc_icon} alt=""/>
 										<p className={this.state.isHover&&this.state.id===item.gc_id?css.liHover:''}>{item.gc_name}</p>
 									</NavLink>
-				 					
-								</li>
-									
-						   				
+									{
+										this.state.id===item.gc_id?
+										<Menu className={this.state.secondList?css.menu:css.display}
+										      onMouseOut={this.navMouseout.bind(this)}
+										  >
+											{
+												this.state.childrenList.map((item)=>{
+													return <Menu.Item key={item.gc_id} className={css.list} onClick={this.navHandleClick.bind(this,item)}>
+														      <NavLink replace to='/category' rel="noopener noreferrer" href="#">{item.gc_name}</NavLink>
+														    </Menu.Item>		 
+												})
+											} 
+										</Menu>:''
+									}
+								</li>	   				
 						})
 					}
 
@@ -44,17 +56,7 @@ class Nav extends Component{
 				</ul>
 				
 			</div>
-			<Menu>
-									{
-										this.state.childrenList.map((item)=>{
-											return <Menu.Item>
-												      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">{item.gc_name}</a>
-												    </Menu.Item>
-												    
-												 
-										})
-									} 
-									 </Menu>
+			
 		</div>
 	}
 
@@ -65,30 +67,41 @@ class Nav extends Component{
 			// console.log(res.data.goodsClass)
 			this.setState({
 				navList:res.data.goodsClass,
-				// childrenList:this.state.navList.childrenList
 			})
 		})
 	}
 
 
-	handelClick(item){
+	handelClick(item,e){
 		this.props.NavListidReducer(item);
+		e.stopPropagation();
+		// item.nativeEvent.stopImmediatePropagation();
+		console.log(item);
 	}
 	onMouseOver(id,item){
 		this.setState({
 			isHover:true,
 			id:id,
-			childrenList:item.children
+			childrenList:item.children,
+			secondList:true
 		})
-		// console.log(id,item.children)
 
 	}
 
 	onMouseOut(){
 		this.setState({
 			isHover:false,
-			isHoverLast:true
+			isHoverLast:true,
+			secondList:false
 		})
+	}
+	navMouseout(){
+		this.setState({
+			secondList:false
+		})
+	}
+	navHandleClick(item){
+		console.log(item.gc_id)
 	}
 }
 
@@ -98,6 +111,18 @@ export default connect(null,{
 		return {
 			type:'navId',
 			payload:item
+		}
+	},
+	NavNotShowReducer(){
+		return {
+			type:'navNotShow',
+			payload:false
+		}
+	},
+	NavShowReducer(){
+		return {
+			type:'navIsShow',
+			payload:true
 		}
 	}
 })( Nav)

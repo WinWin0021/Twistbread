@@ -1,0 +1,118 @@
+
+#GoodsDetail{
+	width: 1200px;
+	margin: 0 auto;
+}
+.hm-content{
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	.hm-left{
+		width: 620px;
+		.hm-screen{
+			width: 100%;
+			height: 465px;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 0 10px 0 hsla(0,0%,80%,.65);
+			.hm-video{
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+		}
+	}
+
+}
+
+.hm-videoimg{
+	margin-top: 20px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 10px;
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+	z-index: 1;
+	margin-top: 20px;
+	.hm-imgitem{
+		float: left;
+		margin-left: 30px;
+		text-align: center;
+	}
+	img{
+		height: 120px;
+		border-radius: 10px;
+		background-repeat: no-repeat;
+		background-position: 50%;
+		background-size: cover;
+		overflow: hidden;
+		cursor: pointer;
+		box-shadow: 0 0 10px 0 hsla(0,0%,80%,.65);
+		
+	}
+}
+
+
+.hm-imginner:after{
+	display: 'block';
+	content:'';
+	clear: both;
+}
+
+
+.hm-mid{
+	width: 360px;
+	.hm-title{
+		font-size: 22px;
+		color: #333;
+	}
+	.hm-goodname{
+		margin-top: 10px;
+		font-size: 18px;
+		line-height: 28px;
+		color: #666;
+	}
+	.hm-good-detail{
+		.hm-current-price{
+			font-size: 14px;
+			color: rgba(0,0,0,.65);
+			margin-right: 10px;
+		}
+		.hm-goodprice{
+			font-size: 24px;
+			font-weight: 700;
+			color: #ff527d;
+		}
+		.hm-markprice{
+			margin-left: 14px;
+			color: #999;
+			text-decoration: line-through;
+			font-size: 14px;
+		}
+	}
+	.hm-goodspec{
+		margin-top: 60px;
+		font-size: 12px;
+	}
+}
+
+.hm-midtop{
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+.hm-buttongroup{
+	margin: 38px 0 42px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: rgba(0,0,0,.65);
+}
+.hm-hongren{
+	width: 156px;
+	padding: 20px 24px 22px;
+	text-align: center;
+	border: 1px solid #eee;
+}

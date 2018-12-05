@@ -1,18 +1,25 @@
 #Nav{
-	height: 60px;border-bottom: 1px solid #fbfbfb;
-	div{
-		background: pink;height: 100%;
+	height: 60px;border-bottom: 1px solid #fbfbfb;display: flex;
+	div#list{
+		background: pink;height: 100%;clear:both;display: block;
 		ul{position: relative;
 			li{
-				float: left;width: 150px;line-height: 60px;font-size: 12px;
-				img{position: absolute;top:50%;transform:translateY(50%);}
+				float: left;width: 150px;line-height: 60px;font-size: 12px;display: flex;flex-direction: row;justify-content: center;
+				img{position: absolute;transform:translateY(50%);}
 				// display: table-cell;vertical-align: middle;外面容器不能浮动,不能用在a里
 				p{margin-left: 40px;color: #333;}
-				i{width: 30px;height: 30px;border-radius: 50%;background: #eeeeee;display: block;position: absolute;top:50%;transform:translateY(50%);}
+				i{width: 30px;height: 30px;border-radius: 50%;background: #eeeeee;display: block;position: absolute;transform:translateY(50%);}
+				.menu{
+					width: 150px;background: pink; box-shadow:0 0 10px 0;position: absolute;top:60px;background: #f9f9f9;transition: opacity .3s;z-index: 10;
+					.list{width: 126px;height: 40px;border-bottom: 1px solid #eee;margin:0 12px;line-height: 40px;color:#333;}
+					.list:hover a{color: #ff527d;}
+				}
 			}
 			li.last:hover p{color: #ff527d};
 			.liHover{color:#ff527d;}
 			.active_lrx{border:4px solid #ff527d;}
+			.display{display: none;}
 		}
 	}
 }
+	.clear:after{content: '';display: block;clear: both;}
