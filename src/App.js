@@ -9,7 +9,6 @@ class App extends Component {
       <div className="App">
       	<Head></Head>
       	<Nav></Nav>
-	        1111111
 	        {this.props.children}
         <Footer></Footer>
       </div>

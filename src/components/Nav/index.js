@@ -22,7 +22,7 @@ class Nav extends Component{
 				<ul className={css.clear}>
 					{
 						this.state.navList.map((item)=>{
-							return <li  className="ant-dropdown-link"  key={item.gc_id} onClick={(e)=>this.handelClick.bind(this,item.gc_id,e)} 
+							return <li  className="ant-dropdown-link"  key={item.gc_id} onClick={this.handelClick.bind(this,item.gc_id,item.children)} 
 							onMouseOver={this.onMouseOver.bind(this,item.gc_id,item)}
 							onMouseOut={this.onMouseOut.bind(this)}  >
 									<NavLink to='/category' replace activeClassName="active_lrx" className={css.box}>
@@ -36,7 +36,7 @@ class Nav extends Component{
 										  >
 											{
 												this.state.childrenList.map((item)=>{
-													return <Menu.Item key={item.gc_id} className={css.list} onClick={this.navHandleClick.bind(this,item.gc_id)}>
+													return <Menu.Item key={item.gc_id} className={css.list} onClick={(e)=>this.navHandleClick.call(this,item.gc_id,e)}>
 														      <NavLink replace to='/category' rel="noopener noreferrer" href="#">{item.gc_name}</NavLink>
 														    </Menu.Item>		 
 												})
@@ -47,7 +47,7 @@ class Nav extends Component{
 						})
 					}
 
-					 <li className={css.last}><NavLink to='/category' activeClassName="active_lrx">
+					 <li className={css.last}><NavLink to='/category' >
 					 		<i></i>
 							<p >化妆教学(收费)</p>
 					 	</NavLink>
@@ -71,12 +71,10 @@ class Nav extends Component{
 		})
 	}
 
+//父li点击事件
+	handelClick(item,children){
+		this.props.NavListidReducer(item,children);
 
-	handelClick(item,e){
-		this.props.NavListidReducer(item);
-		e.stopPropagation();//阻止冒泡???
-		// item.nativeEvent.stopImmediatePropagation();
-		console.log(item);
 	}
 	onMouseOver(id,item){
 		this.setState({
@@ -100,17 +98,25 @@ class Nav extends Component{
 			secondList:false
 		})
 	}
-	navHandleClick(item){
-		console.log(item)
+	//二级菜单li点击事件
+	navHandleClick(item,e){
+		this.props.NavListidReducer(item);
+		e.domEvent.stopPropagation();
+		e.domEvent.nativeEvent.stopImmediatePropagation();
+
 	}
+
 }
 
 
 export default connect(null,{
-	NavListidReducer(item){
+	NavListidReducer(item,children){
 		return {
 			type:'navId',
-			payload:item
+			payload:{
+				id:item,
+				children
+			}
 		}
 	},
 	NavNotShowReducer(){

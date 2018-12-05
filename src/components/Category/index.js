@@ -54,9 +54,9 @@ class Category extends Component{
 		
 	}
 	componentWillReceiveProps(nextprops){
-		console.log(nextprops)
+		// console.log(nextprops)
 		axios.get(`/pc/goods/gcGoods?gc_id=${nextprops.lrx}&limit=15&offset=0`).then(res=>{
-			console.log(this.state.goodlist)
+			// console.log(this.state.goodlist)
 			this.setState({
 				goodlist:res.data.goods_info,
 				goodscount:res.data.allCount
@@ -97,7 +97,7 @@ class Category extends Component{
 			this.setState({
 				alllist:res.data.goodsClass
 			})
-			console.log(this.state.alllist)
+			// console.log(this.state.alllist)
 			
 		})
 

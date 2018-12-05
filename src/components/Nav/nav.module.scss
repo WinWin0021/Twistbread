@@ -1,7 +1,8 @@
 #Nav{
 	height: 60px;border-bottom: 1px solid #fbfbfb;display: flex;
+	a{text-decoration: none;}
 	div#list{
-		background: pink;height: 100%;clear:both;display: block;
+		background: -pink;height: 100%;clear:both;display: block;
 		ul{position: relative;
 			li{
 				float: left;width: 150px;line-height: 60px;font-size: 12px;display: flex;flex-direction: row;justify-content: center;
@@ -17,9 +18,9 @@
 			}
 			li.last:hover p{color: #ff527d};
 			.liHover{color:#ff527d;}
-			.active_lrx{border:4px solid #ff527d;}
 			.display{display: none;}
 		}
 	}
 }
 	.clear:after{content: '';display: block;clear: both;}
+	.active_lrx{background: red;width: 100px;height: 20px;border:4px solid red;}
