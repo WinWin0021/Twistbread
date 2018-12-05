@@ -115,7 +115,7 @@ export default connect(null,{
 			type:'navId',
 			payload:{
 				id:item,
-				children
+				children:children
 			}
 		}
 	},
