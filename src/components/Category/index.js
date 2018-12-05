@@ -85,7 +85,7 @@ class Category extends Component{
 				})
 			}
 				
-				}
+			}
 		
 		 	
 			
