@@ -41,7 +41,10 @@ import Coupon from "../components/User/Coupon";//优惠券
 import SearchResult from "../components/SearchResult";
 //登录页路由
 import Login from "../components/Login";
+import store from '../store/';
+import {Provider} from 'react-redux';
 const router = (
+	<Provider store = {store}>
 	<Router>
 		<App>
 			<Switch>
@@ -50,7 +53,7 @@ const router = (
 				<Route path="/chargeTutoria" component ={ChargeTutoria}/>
 				<Route path="/video/detail" component ={VideoDetail}/>
 				<Route path="/goods/detail" component ={GoodsDetail}/>
-				<Route path="/cart"render={()=>
+				<Route path="/cart" render={()=>
 					<Cart>
 						<Switch>
 							<Route path="/cart/coulist" component ={Coulist}/>
@@ -91,6 +94,7 @@ const router = (
 			</Switch>
 		</App>
 	</Router>
+	</Provider>
 )
 
 export default router;

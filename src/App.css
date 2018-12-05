@@ -13,3 +13,10 @@ a{
   text-decoration: none;
 }
 
+.container{width: 1200px;margin:0 auto;}
+html{
+	width: 100%;
+}
+body{
+	width: 100%;
+}
