@@ -94,8 +94,7 @@ class GoodsDetail extends Component{
 	}
 
 	componentDidMount(){
-		axios.get('/pc/goods/getGoodsDetail?goods_id=1321481').then(res=>{
-			console.log(res.data.goodsInfo.goods_other_detail.other_content)
+		axios.get(`/pc/goods/getGoodsDetail?goods_id=${this.props.goodId}`).then(res=>{
 			this.setState({
 				videoUrl : res.data.videos,
 				goodsInfo :res.data.goodsInfo,
@@ -136,4 +135,10 @@ class GoodsDetail extends Component{
 }
 
 
-export default connect(null,action)(GoodsDetail);
+export default connect((state)=>{
+	console.log(state)
+	return{
+		goodId:state.toDetailReducer
+	}
+
+},action)(GoodsDetail)

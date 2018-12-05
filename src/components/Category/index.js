@@ -73,6 +73,7 @@ class Category extends Component{
 	}
 
 	toDetail(id){
+		this.props.history.push('goods/detail')
 		this.props.toDetailReducer(id)
 	}
 	
