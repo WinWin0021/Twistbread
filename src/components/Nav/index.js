@@ -36,7 +36,7 @@ class Nav extends Component{
 										  >
 											{
 												this.state.childrenList.map((item)=>{
-													return <Menu.Item key={item.gc_id} className={css.list} onClick={this.navHandleClick.bind(this,item)}>
+													return <Menu.Item key={item.gc_id} className={css.list} onClick={this.navHandleClick.bind(this,item.gc_id)}>
 														      <NavLink replace to='/category' rel="noopener noreferrer" href="#">{item.gc_name}</NavLink>
 														    </Menu.Item>		 
 												})
@@ -74,7 +74,7 @@ class Nav extends Component{
 
 	handelClick(item,e){
 		this.props.NavListidReducer(item);
-		e.stopPropagation();
+		e.stopPropagation();//阻止冒泡???
 		// item.nativeEvent.stopImmediatePropagation();
 		console.log(item);
 	}
@@ -101,7 +101,7 @@ class Nav extends Component{
 		})
 	}
 	navHandleClick(item){
-		console.log(item.gc_id)
+		console.log(item)
 	}
 }
 

@@ -21,44 +21,7 @@ class Category extends Component{
 	render(){
 
 		return <div className={css.Category}>
-		{ /*列表头*/ }
-			<div className={css.categorylist}>
-			<div className={css.categorylist2}>品类</div>
-				<ul>
-					<li className={css.categorylist1}  onClick={this.handleClick1.bind(this)}><span>全部</span></li>
-					{	this.state.alllist.map((item,index)=>
-							<li key={item.gc_id} onClick={this.handleClick.bind(this,index)}>
-								<span>{item.gc_name}</span>
-							</li>
-						)
-				
-					}
-				</ul>
-			</div>
-
-			<div className={css.goods}>
-				<ul>
-
-					{this.state.goodlist.map((item,index)=>
-						<li key={item.goods_id}>
-							<div className={css.imgdiv}>
-								<img src={item.goods_image}/>
-								<div className={css.goodspan}>{item.goods_desc}</div>
-								<div className={css.goodspan1}>{item.goods_name}</div>
-								<div className={css.price}>
-									<span className={css.price1}>￥{item.goods_price}</span>
-									{
-										item.goods_marketprice===null?
-										<span className={css.price2}>￥{(item.goods_price/(item.goods_discount/10))}</span>
-										:<span className={css.price2}>￥{item.goods_marketprice}</span>
-									}
-								</div>
-							</div>
-						</li>
-					)}
-				</ul>
-			</div>
-
+		
 
 		</div>
 	}
