@@ -90,7 +90,7 @@ class Category extends Component{
 
 	componentWillReceiveProps(nextprops){
 		console.log(this.props.lrx)
-		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.id}&limit=15&offset=0`).then(res=>{
+		axios.get(`/pc/goods/gcGoods?gc_id=${nextprops.lrx.id}&limit=15&offset=0`).then(res=>{
 			// console.log(this.state.goodlist)
 			this.setState({
 				goodlist:res.data.goods_info,
