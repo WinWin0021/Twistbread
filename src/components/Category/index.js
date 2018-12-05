@@ -89,12 +89,8 @@ class Category extends Component{
 	}
 
 	componentWillReceiveProps(nextprops){
-<<<<<<< .mine
-		/*点击渲染页面*/
-		console.log(nextprops)
-=======
->>>>>>> .theirs
-		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=0`).then(res=>{
+		console.log(this.props.lrx)
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.id}&limit=15&offset=0`).then(res=>{
 			// console.log(this.state.goodlist)
 			this.setState({
 				goodlist:res.data.goods_info,
@@ -135,16 +131,13 @@ class Category extends Component{
 				alllist:res.data.goodsClass,
 				alllistChildren:res.data.goodsClass
 			})
-<<<<<<< .mine
-			// console.log(this.state.alllist)
-=======
-			console.log(this.state.alllistChildren)
->>>>>>> .theirs
+
 			
 		})
 
 		/*一进入到页面，加载全部*/
-		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=0`).then(res=>{
+		console.log(this.props.lrx)
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.id}&limit=15&offset=0`).then(res=>{
 			this.setState({
 				goodlist:res.data.goods_info,
 				goodscount:res.data.allCount

@@ -105,6 +105,10 @@ class GoodsDetail extends Component{
 		})
 	}
 
+	componentWillMount(){
+		this.props.NavIsShow()
+	}
+
 	changeViedo(index){
 		console.log(index)
 			this.setState({
@@ -132,8 +136,4 @@ class GoodsDetail extends Component{
 }
 
 
-export default connect((state)=>{
-	return{
-		id:state.detailIdReducer
-	}
-},action)(GoodsDetail);
+export default connect(null,action)(GoodsDetail);
