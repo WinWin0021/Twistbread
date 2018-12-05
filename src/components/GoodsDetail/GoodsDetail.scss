@@ -65,6 +65,7 @@
 
 
 .hm-mid{
+	margin-left: 30px;
 	width: 360px;
 	.hm-title{
 		font-size: 22px;
@@ -110,9 +111,129 @@
 	line-height: 1.5;
 	color: rgba(0,0,0,.65);
 }
+
+.hm-button{
+	width: 36px;
+	height: 33px;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	font-size: 12px;
+	background: transparent;
+	outline: none;
+	cursor: pointer;
+}
+
+.hm-number{
+	display: inline-block;
+	width: 50px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	vertical-align: middle;
+	height: 31px;
+	line-height: 31px;
+}
+
+.hm-cartgroup{
+	margin-top: 42px;
+}
+
+.hm-addcart{
+	width: 170px;
+	height: 40px;
+	line-height: 38px;
+	border-radius: 20px;
+	font-size: 20px;
+	margin-right: 20px;
+	border: 1px solid #ff527d;
+	color: #ff527d;
+	background: #fff;
+}
+.hm-addcart:hover{
+	color: #fff;
+	background: #ff527d;
+}
+
+.hm-button:hover{
+	border-color: #ff527d;
+}
 .hm-hongren{
+	margin-left: 20px;
 	width: 156px;
 	padding: 20px 24px 22px;
 	text-align: center;
 	border: 1px solid #eee;
+	box-sizing: border-box;
+	.hm-avatar{
+		width: 40px;
+		height: 40px;
+		margin: 0 auto;
+		border-radius: 50%;
+		overflow: hidden;
+		.hm-avatarimg{
+			width: 100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: 50%;
+			background-size: cover;
+		}
+	}
+	.hm-hongren-name{
+		margin-top: 10px;
+		padding-bottom: 10px;
+		font-size: 14px;
+		color: #666;
+		text-overflow: ellipsis;
+		 white-space: nowrap;
+		 border-bottom: 1px solid #eee;
+	}
+	.hm-hongren-list{
+		padding: 4px 0;
+		.hm-hongren-number{
+			line-height: 22px;
+			text-align: left;
+			font-size: 12px;
+			color: #666;
+			box-sizing: border-box;
+			.hm-hongren-span{
+				display: inline-block;
+				width: 40px;
+				text-align: justify;
+				text-align-last: justify;
+				box-sizing: border-box;
+			}
+			.hm-hongren-span2{
+				margin-left: 16px;
+			}
+		}
+	}
+	.hm-hongren-follow{
+		margin-top: 14px;
+		box-sizing: border-box;
+		.hm-follow-button{
+			width: 100px;
+			margin-bottom: 16px;
+			line-height: 20px;
+			color: #ff527d;
+			border: 1px solid #ff527d;
+			border-radius: 10px;
+			font-size: 12px;
+			background: transparent;
+			outline: none;
+			cursor: pointer;
+		}
+		.hm-hongren-comin{
+			color: #999;
+			font-size: 14px;
+			cursor: pointer;
+		}
+		.hm-hongren-comin:hover{
+			color: #ff527d;
+		}
+	}
+}
+
+
+.hm-follow-button:hover{
+	    color: #f02356;
 }
