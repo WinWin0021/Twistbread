@@ -7,4 +7,4 @@ const toDetailReducer = (prevStage=0,action={})=>{
 			return prevStage;
 	}
 }
-export default NavListidReducer;
+export default toDetailReducer;
