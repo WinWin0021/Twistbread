@@ -12,17 +12,51 @@ class Category extends Component{
 			goodlist:[],
 			current:0,
 			offset:0,
-			goodscount:0
+			goodscount:0,
+			alllistChildren:[]
 
 		}
 	}
 
 
 	render(){
-
 		return <div className={css.Category}>
-		
+		{ /*列表头*/ }
+			<div className={css.categorylist}>
+				<div className={css.categorylist2}>品类</div>
+				<ul>
+					<li className={css.categorylist1}  onClick={this.handleClick1.bind(this)}><span>全部</span></li>
+					{	this.state.alllistChildren.map((item,index)=>
+							<li key={item.gc_id} onClick={this.handleClick.bind(this,index)}>
+								<span>{item.gc_name}</span>
+							</li>
+						)
+					}
+				</ul>
+			</div>
 
+			<div className={css.goods}>
+				<ul>
+
+					{this.state.goodlist.map((item,index)=>
+						<li key={item.goods_id}>
+							<div className={css.imgdiv}>
+								<img src={item.goods_image}/>
+								<div className={css.goodspan}>{item.goods_desc}</div>
+								<div className={css.goodspan1}>{item.goods_name}</div>
+								<div className={css.price}>
+									<span className={css.price1}>￥{item.goods_price}</span>
+									{
+										item.goods_marketprice===null?
+										<span className={css.price2}>￥{(item.goods_price/(item.goods_discount/10))}</span>
+										:<span className={css.price2}>￥{item.goods_marketprice}</span>
+									}
+								</div>
+							</div>
+						</li>
+					)}
+				</ul>
+			</div>
 		</div>
 	}
 	handleClick1(){
@@ -53,25 +87,25 @@ class Category extends Component{
 		})
 		
 	}
+
 	componentWillReceiveProps(nextprops){
+		/*点击渲染页面*/
 		console.log(nextprops)
-		axios.get(`/pc/goods/gcGoods?gc_id=${nextprops.lrx}&limit=15&offset=0`).then(res=>{
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=0`).then(res=>{
 			console.log(this.state.goodlist)
 			this.setState({
 				goodlist:res.data.goods_info,
 				goodscount:res.data.allCount
 
 			})
-			// }
+		
 		})
 	}
-	
-
 
 
 	componentDidMount(){
+		/*懒加载*/
 		window.onscroll=()=>{
-			/*懒加载*/
 			if(this.state.goodscount>=this.state.offset){
 			if((window.innerHeight+document.documentElement.scrollTop)>=document.documentElement.scrollHeight){
 				this.setState({
@@ -95,9 +129,10 @@ class Category extends Component{
 		/*上面的每个列表页home 配饰 护肤*/
 		axios.get("/pc/pcIndex/class").then(res=>{
 			this.setState({
-				alllist:res.data.goodsClass
+				alllist:res.data.goodsClass,
+				alllistChildren:res.data.goodsClass
 			})
-			console.log(this.state.alllist)
+			console.log(this.state.alllistChildren)
 			
 		})
 
@@ -113,14 +148,9 @@ class Category extends Component{
 	}
 
 }
-
-
-
-
-
 export default connect((state)=>{
 
-	//console.log(state.NavListidReducer)
+	console.log(state.NavListidReducer)
 	return {
 		lrx:state.NavListidReducer
 	}
