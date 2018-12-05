@@ -2,7 +2,6 @@ import React,{Component} from "react";
 import css from "./index.module.scss";
 import axios from "axios";
 import {NavLink} from "react-router-dom"
-import {connect} from 'react-redux';
 
 class Category extends Component{
 	constructor(props){
@@ -19,7 +18,6 @@ class Category extends Component{
 
 
 	render(){
-
 		return <div className={css.Category}>
 		{ /*列表头*/ }
 			<div className={css.categorylist}>
@@ -148,19 +146,10 @@ class Category extends Component{
 
 export default Category;
 
-		return <div id="Category">
-			Category
-			{this.props.lrx}
-		</div>
-	}
-	
-}
+//https://www.huajuanmall.com/pc/goods/gcGoods?gc_id=9&limit=15&offset=15
+//https://www.huajuanmall.com/pc/goods/gcGoods?gc_id=9&limit=15&offset=30
 
+//https://www.huajuanmall.com/pc/goods/gcGoods?gc_id=9&limit=15&offset=45
 
-export default connect((state)=>{
-	// console.log(state.NavListidReducer)
-	return {
-		lrx:state.NavListidReducer
-	}
-})(Category);
-
+//https://www.huajuanmall.com/pc/goods/gcGoods?gc_id=1&limit=15&offset=0
+//https://www.huajuanmall.com/pc/goods/gcGoods?gc_id=1&limit=15&offset=15
