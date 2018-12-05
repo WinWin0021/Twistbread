@@ -26,8 +26,8 @@ class Category extends Component{
 		</div>
 	}
 	handleClick1(){
-		axios.get("/pc/goods/gcGoods?gc_id=9&limit=15&offset=0").then(res=>{
-			//console.log(res.data.goods_info)
+
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=0`).then(res=>{
 			this.setState({
 				goodlist:res.data.goods_info,
 				goodscount:res.data.allCount
@@ -39,41 +39,46 @@ class Category extends Component{
 	
 
 	handleClick(index){
-		//console.log(this.state.alllist[index].gc_id)
 		/*点击发送Ajax请求详细的一列*/
-
-
 		axios.get(`/pc/goods/gcGoods?gc_id=${this.state.alllist[index].gc_id}&limit=15&offset=0`).then(res=>{
 				this.setState({
 					goodlist:res.data.goods_info,
 					goodscount:res.data.allCount
 				})
-				//console.log(res.data)
+				
 		})
 
 		this.setState({
 			current:index
 		})
-		//console.log(this.state.current)
+		
 	}
+	componentWillReceiveProps(nextprops){
+		console.log(nextprops)
+		axios.get(`/pc/goods/gcGoods?gc_id=${nextprops.lrx}&limit=15&offset=0`).then(res=>{
+			console.log(this.state.goodlist)
+			this.setState({
+				goodlist:res.data.goods_info,
+				goodscount:res.data.allCount
+
+			})
+			// }
+		})
+	}
+	
+
 
 
 	componentDidMount(){
 		window.onscroll=()=>{
-			
-			console.log(this.state.goodscount)
-			console.log(this.state.offset)
-			console.log(this.state.alllist[])
 			/*懒加载*/
-			
-			
 			if(this.state.goodscount>=this.state.offset){
 			if((window.innerHeight+document.documentElement.scrollTop)>=document.documentElement.scrollHeight){
 				this.setState({
 					offset:this.state.offset+15
 				})
 
-				axios.get(`/pc/goods/gcGoods?gc_id=9&limit=15&offset=${this.state.offset}`).then(res=>{
+				axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=${this.state.offset}`).then(res=>{
 					this.setState({
 						goodlist:[...this.state.goodlist,...res.data.goods_info]
 					})
@@ -90,13 +95,14 @@ class Category extends Component{
 		/*上面的每个列表页home 配饰 护肤*/
 		axios.get("/pc/pcIndex/class").then(res=>{
 			this.setState({
-				alllist:res.data.goodsClass[0].children
+				alllist:res.data.goodsClass
 			})
+			console.log(this.state.alllist)
+			
 		})
 
 		/*一进入到页面，加载全部*/
-		axios.get("/pc/goods/gcGoods?gc_id=9&limit=15&offset=0").then(res=>{
-			//console.log(res.data.goods_info)
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=0`).then(res=>{
 			this.setState({
 				goodlist:res.data.goods_info,
 				goodscount:res.data.allCount
@@ -109,19 +115,12 @@ class Category extends Component{
 }
 
 
-export default Category;
 
-		return <div id="Category">
-			Category
-			{this.props.lrx}
-		</div>
-	}
-	
-}
 
 
 export default connect((state)=>{
-	// console.log(state.NavListidReducer)
+
+	//console.log(state.NavListidReducer)
 	return {
 		lrx:state.NavListidReducer
 	}
