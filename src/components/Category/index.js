@@ -3,6 +3,7 @@ import css from "./index.module.scss";
 import axios from "axios";
 import {NavLink} from "react-router-dom"
 import {connect} from 'react-redux';
+import action from './action.js'
 
 class Category extends Component{
 	constructor(props){
@@ -41,7 +42,7 @@ class Category extends Component{
 					{this.state.goodlist.map((item,index)=>
 						<li key={item.goods_id}>
 							<div className={css.imgdiv}>
-								<img src={item.goods_image}/>
+								<img onClick = {this.toDetail.bind(this,item.goods_id)} src={item.goods_image}/>
 								<div className={css.goodspan}>{item.goods_desc}</div>
 								<div className={css.goodspan1}>{item.goods_name}</div>
 								<div className={css.price}>
@@ -69,6 +70,10 @@ class Category extends Component{
 			})
 		})
 
+	}
+
+	toDetail(id){
+		this.props.toDetailReducer(id)
 	}
 	
 
@@ -154,5 +159,5 @@ export default connect((state)=>{
 	return {
 		lrx:state.NavListidReducer
 	}
-})(Category);
+},action)(Category);
 
