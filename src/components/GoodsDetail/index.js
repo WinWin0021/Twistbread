@@ -62,6 +62,8 @@ class GoodsDetail extends Component{
 			</div>
 			:null
 		}
+			hahahahahahahah!!!!!
+			气死刘海敏!!!!!!!!
 		</div>
 	}
 

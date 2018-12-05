@@ -3,6 +3,10 @@ const NavListidReducer = (prevStage=0,action={})=>{
 	switch (type) {
 		case 'navId':
 			return payload;
+		case 'navNotShow':
+			return payload;
+		case  'navIsShow':
+			return payload;
 		default:
 			return prevStage;
 	}
