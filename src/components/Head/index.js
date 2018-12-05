@@ -21,7 +21,7 @@ class Head extends Component{
 					<a href="#" className={css.logo}>
 						<img src="/headerimg/logo.jpg"/>
 						<p className={css.logo}>花卷</p>
-						<p>红人视频购物商城</p>
+						<p className={css.text}>红人视频购物商城</p>
 					</a>
 					<div className={css.input}>
 						<input placeholder="请输入想找的红人或商品" />

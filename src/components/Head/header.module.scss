@@ -26,9 +26,9 @@
 		div{position: relative;
 			a.logo{
 				width: 140px;height: 70px;display: block;position: relative;left:28px;top:25px;
-				img{float: left;margin-right: 6px;}
+				img{float: left;margin-right: 6px;position: absolute;left: 0;top: 0}
 				p.logo{font-size: 24px;color: #ff527d;font-weight: bold;line-height: 46px;}
-				p{font-size: 12px;color: #999; }
+				p.text{font-size: 12px;color: #999;position: absolute;left: 0;top:55px;}
 			}
 			div.input{
 				width: 388px;height: 40px;background: #eeeeee;position: absolute;top:40px;right: 188px;border-radius: 20px;color:#999;
