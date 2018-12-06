@@ -127,17 +127,5 @@ export default connect((state)=>{
 				selfId:selfId
 			}
 		}
-	},
-	NavNotShowReducer(){
-		return {
-			type:'navNotShow',
-			payload:false
-		}
-	},
-	NavShowReducer(){
-		return {
-			type:'navIsShow',
-			payload:true
-		}
 	}
 })( Nav)
