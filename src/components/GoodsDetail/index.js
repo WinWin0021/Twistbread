@@ -100,7 +100,6 @@ class GoodsDetail extends Component{
 				goodsInfo :res.data.goodsInfo,
 				hongrenInfo:res.data.hongren,
 			})
-			console.log(this.state.videoUrl[0].video_url)
 		})
 	}
 
@@ -109,7 +108,6 @@ class GoodsDetail extends Component{
 	}
 
 	changeViedo(index){
-		console.log(index)
 			this.setState({
 				index:index
 			})
@@ -117,7 +115,6 @@ class GoodsDetail extends Component{
 
 	minus(){
 		if (this.state.count === 1) {
-			console.log(1)
 		}else{
 			this.setState({
 				count:this.state.count - 1 
@@ -136,7 +133,6 @@ class GoodsDetail extends Component{
 
 
 export default connect((state)=>{
-	console.log(state)
 	return{
 		goodId:state.toDetailReducer
 	}
