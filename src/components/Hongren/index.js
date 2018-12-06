@@ -238,7 +238,13 @@ class Hongren extends Component{
 		      }
 		    });
 	}
+	componentWillUnmount(){
+		//https://www.huajuanmall.com/search/searchHongren?KW=1
+		//console.log('aaaaaaaaaaaaaaa')
+		//window.removeEventListener('scroll',this.fanHuiScroll)
+	}
 }
+
 //https://www.huajuanmall.com/pc/hongren/getDetailData?hongren_uid=96029699471632
 
 export default connect((state)=>{
