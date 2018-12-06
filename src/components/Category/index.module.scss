@@ -1,9 +1,14 @@
 .Category{
 	width:1200px;
 	margin: 0 auto;
+	padding-bottom:30px;
+
 
 	.categorylist{
 
+		.active{
+			color: #ff527d;
+		}
 		float:left;
 		width:100%;
 		height:50px;
@@ -34,21 +39,16 @@
     			border-right:1px solid #eee;
     			padding:0 16px;
     		}
-    		span:hover{ 
-    			color:#ff527d; 
-    			cursor: pointer;
-    		}
+    		
 		}
 
-		.active{
-			color: #ff527d;
-		}
 	}
 
 
 	.goods{
 		overflow: hidden;
 		width: 100%;
+		
 
 		ul{
 			width: 1240px;
