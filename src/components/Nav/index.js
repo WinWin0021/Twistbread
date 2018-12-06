@@ -3,7 +3,7 @@ import css from './nav.module.scss';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu} from 'antd';
 
 class Nav extends Component{
 	constructor(props){
@@ -60,15 +60,22 @@ class Nav extends Component{
 		</div>
 	}
 
+	componentWillReceiveProps(newprops){
+		this.setState({
+			showOrNot:newprops.lrx
+		})
+	}
+
 	componentWillMount(){
 		axios.get('/pc/pcIndex/class').then(res=>{
 			this.setState({
 				navList:res.data.goodsClass,
 			})
 		})
+
 	}
 
-//父li点击事件
+	//父li点击事件
 	handelClick(item,children){
 		this.props.NavListidReducer(item,children);
 
@@ -103,13 +110,13 @@ class Nav extends Component{
 
 	}
 
-	componentDidMount(){
-		
-	}
-
 }
 
-export default connect(null,{
+export default connect((state)=>{
+	return {
+		lrx:state.NavHideReducer
+	}
+},{
 	NavListidReducer(item,children,parentId,selfId){
 		return {
 			type:'navId',

@@ -19,7 +19,7 @@ class Head extends Component{
 			<div id={css.box}>
 				<div className="container">
 					<a href="#" className={css.logo}>
-						<img src="/headerimg/logo.jpg"/>
+						<img src="/headerimg/logo.jpg" alt=""/>
 						<p className={css.logo}>花卷</p>
 						<p className={css.text}>红人视频购物商城</p>
 					</a>
