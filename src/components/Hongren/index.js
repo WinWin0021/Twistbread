@@ -16,11 +16,13 @@ class Hongren extends Component{
 			class_info:[],
 			brand_info:[],
 			isShow:false,
-			goods_info:[]
+			goods_info:[],
+			isShoe:false
 		}
 	}
 	componentWillMount(){
-			this.props.NavIsShow()
+			this.props.NavIsShow();
+			window.addEventListener('scroll',this.fanHuiScroll.bind(this))
 		}
 	render(){
 		return <div id={css.Hongren}>
@@ -164,15 +166,21 @@ class Hongren extends Component{
 						</ul>
 					</div>
 				</div>
-				<div className={css.antBackTop}>
-					<span>返回</span>
-				</div>
+				{
+					this.state.isShoe?
+					<div className={css.antBackTop} onClick={this.fanHui.bind(this)}>
+						<span>返回</span>
+					</div>
+					:null
+				}
+				
 	</div>
 		
 }
 
 	componentDidMount(){
-		axios.get('/pc/hongren/getDetailData?hongren_uid=96029699471632').then(res=>{
+		//console.log(this.props.hongren_uid)
+		axios.get(`/pc/hongren/getDetailData?hongren_uid=${this.props.hongren_uid}`).then(res=>{
 			//console.log(res.data.data)
 			this.setState({
 				user_sex:res.data.data.hongrenInfo,
@@ -184,8 +192,8 @@ class Hongren extends Component{
 			})
 		})
 
-		axios.get('/pc/hongren/hongrenGoodsList?hongren_uid=96029699471632&offset=0&limit=10').then(res=>{
-			console.log(res.data.data.goods_info)
+		axios.get(`/pc/hongren/hongrenGoodsList?hongren_uid=${this.props.hongren_uid}&offset=0&limit=10`).then(res=>{
+			//console.log(res.data.data.goods_info)
 			this.setState({
 				goods_info:res.data.data.goods_info
 			})
@@ -201,6 +209,25 @@ class Hongren extends Component{
 		this.props.history.push('goods/detail')
 		this.props.toDetailReducer(id)
 	}
+	fanHuiScroll(){
+		//let scrollTop = document.body.scrollTop;
+		//console.log(document.documentElement.scrollTop)
+		if (document.documentElement.scrollTop >= 500) {
+			this.setState({
+				isShoe:true
+			})
+		}else {
+			this.setState({
+				isShoe:false
+			})
+		}
+
+		//console.log(document.documentElement.scrollTop)
+	}
+	fanHui(){
+		//console.log(document.body.scrollTop)
+		document.documentElement.scrollTop=0
+	}
 	componentDidUpdate(){
 		var swiper = new Swiper('.swiper-container', {
 		      slidesPerView: 3,
@@ -214,4 +241,10 @@ class Hongren extends Component{
 }
 //https://www.huajuanmall.com/pc/hongren/getDetailData?hongren_uid=96029699471632
 
-export default connect(null,action)(Hongren);
+export default connect((state)=>{
+	//console.log(state.hongrenReducer)
+	return{
+		hongren_uid:state.hongrenReducer
+
+	}
+},action)(Hongren);
