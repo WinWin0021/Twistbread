@@ -3,7 +3,7 @@ const hongrenReducer = (prevState=0,action={})=>{
 	switch(type){
 		case 'hongrenId':
 			return payload;
-		default 
+		default :
 			return prevState;
 	}
 }
