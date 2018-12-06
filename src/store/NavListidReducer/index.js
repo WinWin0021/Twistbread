@@ -7,8 +7,6 @@ const NavListidReducer = (prevStage=true,action={})=>{
 			return payload;
 		case  'navIsShow':
 			return payload;
-		case  'HideNav':
-			return payload;
 		default:
 			return prevStage;
 	}
