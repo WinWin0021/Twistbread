@@ -4,6 +4,12 @@ const action={
 			type:'toDetail',
 			payload:id
 		}
+	},
+	NavIsShow(){
+		return{
+			type:"HideNav",
+			payload:false
+		}
 	}
 }
 export default action;

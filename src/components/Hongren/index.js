@@ -19,6 +19,9 @@ class Hongren extends Component{
 			goods_info:[]
 		}
 	}
+	componentWillMount(){
+			this.props.NavIsShow()
+		}
 	render(){
 		return <div id={css.Hongren}>
 			{
