@@ -5,7 +5,8 @@ import {combineReducers,createStore} from 'redux';
 const reducer = combineReducers({
 	NavListidReducer,
 	toDetailReducer,
-	NavHideReducer
+	NavHideReducer,
+	hongrenReducer
 })
 const store = createStore(reducer);
 export default store;

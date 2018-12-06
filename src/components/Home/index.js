@@ -63,7 +63,7 @@ class Home extends Component{
 	componentDidMount(){
 		this.props.NavIsShow()
 		axios.get('/pc/pcIndex/recHot').then(res=>{
-			console.log(res.data.ad);
+			// console.log(res.data.ad);
 			this.setState({
 				swiperList:res.data.ad.pc_index_carousel,
 				hongrenlist:res.data.ad.pc_hongren_rec
