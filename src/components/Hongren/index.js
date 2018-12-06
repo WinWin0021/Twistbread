@@ -3,6 +3,8 @@ import css from "./index.module.scss";
 import axios from "axios";
 import Swiper from "Swiper";
 import "swiper/dist/css/swiper.css";
+import {connect} from "react-redux"
+import action from "./action"
 class Hongren extends Component{
 	constructor(props){
 		super(props);
@@ -67,7 +69,7 @@ class Hongren extends Component{
 						    	{
 						    		this.state.hot_goods.map((item,Myindex)=>
 						    			<div className="swiper-slide" key={item.platform_id}>
-						    				<div className={css.hotGoodsItemBox}>
+						    				<div className={css.hotGoodsItemBox} onClick={this.toDetail.bind(this,item.goods_id)}>
 						    					<div className={css.hotGoodsImage}>
 						    						<div className={css.hotIndex}>Top{Myindex+1}</div>
 						    						<img src={item.goods_image}/>
@@ -142,7 +144,7 @@ class Hongren extends Component{
 							{
 								this.state.goods_info.map(item=>
 									<li className={css.goodsItem} key={item.platform_id}>
-										<div className={css.goodsItem1}>
+										<div className={css.goodsItem1} onClick={this.toDetail.bind(this,item.goods_id)}>
 											<div className={css.goodsImageBox}>
 												<img src={item.goods_image}/>
 											</div>
@@ -191,6 +193,11 @@ class Hongren extends Component{
 			isShow:!this.state.isShow
 		})
 	}
+	toDetail(id){
+		console.log(id)
+		this.props.history.push('goods/detail')
+		this.props.toDetailReducer(id)
+	}
 	componentDidUpdate(){
 		var swiper = new Swiper('.swiper-container', {
 		      slidesPerView: 3,
@@ -204,4 +211,4 @@ class Hongren extends Component{
 }
 //https://www.huajuanmall.com/pc/hongren/getDetailData?hongren_uid=96029699471632
 
-export default Hongren;
+export default connect(null,action)(Hongren);

@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route ,Redirect,Switch} from "react-router-dom";
+import { HashRouter as Router, Route ,Redirect,Switch } from "react-router-dom";
 import React from "react";
 
 //最外层App的容器
@@ -53,16 +53,16 @@ const router = (
 				<Route path="/chargeTutoria" component ={ChargeTutoria}/>
 				<Route path="/video/detail" component ={VideoDetail}/>
 				<Route path="/goods/detail" component ={GoodsDetail}/>
-				<Route path="/cart" render={()=>
-					<Cart>
+				<Route path="/cart" render={(props)=>
+					<Cart {...props}>
 						<Switch>
 							<Route path="/cart/coulist" component ={Coulist}/>
 							<Route path="/cart/step2" component ={Step2}/>
 						</Switch>
 					</Cart>
 				}/>
-				<Route path="/order"  render={()=>
-					<Order>
+				<Route path="/order"  render={(props)=>
+					<Order {...props}>
 						<Switch>
 							<Route path="/order/nopayList" component ={NopayList}/>
 							<Route path="/order/payList" component ={PayList}/>
@@ -71,15 +71,15 @@ const router = (
 					</Order>
 				}/>
 				<Route path="/service" component ={Service}/>
-				<Route path="/hongren" render={()=>
-					<Hongren>
+				<Route path="/hongren" render={(props)=>
+					<Hongren {...props}>
 						<Switch>
 							<Route path="/hongren/list" component ={List}/>
 						</Switch>
 					</Hongren>
 					}/>
-				<Route path="/user" render={()=>
-					<User>
+				<Route path="/user" render={(props)=>
+					<User {...props}>
 						<Switch>
 							<Route path="/user/addAddressView" component ={AddAddressView}/>
 							<Route path="/user/follow" component ={Follow}/>
@@ -96,5 +96,8 @@ const router = (
 	</Router>
 	</Provider>
 )
+
+
+
 
 export default router;

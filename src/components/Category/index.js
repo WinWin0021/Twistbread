@@ -9,12 +9,13 @@ class Category extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			alllist:[],
+			
 			goodlist:[],
 			current:0,
 			offset:0,
 			goodscount:0,
-			alllistChildren:[]
+			allgoodslist:[]
+			
 
 		}
 	}
@@ -27,11 +28,15 @@ class Category extends Component{
 				<div className={css.categorylist2}>品类</div>
 				<ul>
 					<li className={css.categorylist1}  onClick={this.handleClick1.bind(this)}><span>全部</span></li>
-					{	this.state.alllistChildren.map((item,index)=>
+					
+					{
+						this.props.lrx.children?
+						
+						this.props.lrx.children.map((item,index)=>
 							<li key={item.gc_id} onClick={this.handleClick.bind(this,index)}>
 								<span>{item.gc_name}</span>
-							</li>
-						)
+							</li>		
+						):null
 					}
 				</ul>
 			</div>
@@ -57,12 +62,14 @@ class Category extends Component{
 						</li>
 					)}
 				</ul>
+
+				<p className={css.moredata}>没有更多数据了</p>
 			</div>
 		</div>
 	}
 	handleClick1(){
 
-		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=0`).then(res=>{
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.id}&limit=15&offset=0`).then(res=>{
 			this.setState({
 				goodlist:res.data.goods_info,
 				goodscount:res.data.allCount
@@ -80,22 +87,23 @@ class Category extends Component{
 
 	handleClick(index){
 		/*点击发送Ajax请求详细的一列*/
-		axios.get(`/pc/goods/gcGoods?gc_id=${this.state.alllist[index].gc_id}&limit=15&offset=0`).then(res=>{
+		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.children[index].gc_id}&limit=15&offset=0`).then(res=>{
 				this.setState({
 					goodlist:res.data.goods_info,
-					goodscount:res.data.allCount
+					goodscount:res.data.allCount,
+					current:index
 				})
 				
 		})
 
-		this.setState({
-			current:index
-		})
+		console.log(index)
+
+		console.log(this.state.current)
 		
 	}
 
 	componentWillReceiveProps(nextprops){
-		console.log(this.props.lrx)
+		//console.log(this.props.lrx)
 		axios.get(`/pc/goods/gcGoods?gc_id=${nextprops.lrx.id}&limit=15&offset=0`).then(res=>{
 			// console.log(this.state.goodlist)
 			this.setState({
@@ -117,7 +125,7 @@ class Category extends Component{
 					offset:this.state.offset+15
 				})
 
-				axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx}&limit=15&offset=${this.state.offset}`).then(res=>{
+				axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.id}&limit=15&offset=${this.state.offset}`).then(res=>{
 					this.setState({
 						goodlist:[...this.state.goodlist,...res.data.goods_info]
 					})
@@ -132,17 +140,16 @@ class Category extends Component{
 
 
 		/*上面的每个列表页home 配饰 护肤*/
-		axios.get("/pc/pcIndex/class").then(res=>{
+		/*axios.get("/pc/pcIndex/class").then(res=>{
 			this.setState({
-				alllist:res.data.goodsClass,
-				alllistChildren:res.data.goodsClass
+				allgoodslist:res.data.goodsClass
 			})
 
 			
-		})
+		})*/
 
 		/*一进入到页面，加载全部*/
-		console.log(this.props.lrx)
+		//console.log(this.props.lrx)
 		axios.get(`/pc/goods/gcGoods?gc_id=${this.props.lrx.id}&limit=15&offset=0`).then(res=>{
 			this.setState({
 				goodlist:res.data.goods_info,
