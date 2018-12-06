@@ -1,4 +1,4 @@
-const NavListidReducer = (prevStage=0,action={})=>{
+const NavListidReducer = (prevStage=true,action={})=>{
 	let {type,payload} = action;
 	switch (type) {
 		case 'navId':
@@ -6,8 +6,6 @@ const NavListidReducer = (prevStage=0,action={})=>{
 		case 'navNotShow':
 			return payload;
 		case  'navIsShow':
-			return payload;
-		case  'HideNav':
 			return payload;
 		default:
 			return prevStage;
