@@ -1,4 +1,4 @@
-const NavListidReducer = (prevStage=0,action={})=>{
+const NavListidReducer = (prevStage=true,action={})=>{
 	let {type,payload} = action;
 	switch (type) {
 		case 'navId':

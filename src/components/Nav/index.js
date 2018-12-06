@@ -12,12 +12,13 @@ class Nav extends Component{
 			navList:[],
 			isHover:false,
 			childrenList:[],
-			secondList:true
+			secondList:true,
+			showOrNot:true
 		}
 	}
 
 	render(){
-		return <div id={css.Nav} >
+		return <div id={css.Nav} style={this.state.showOrNot?{display:'block'}:{display:'none'}}>
 			<div className='container' id={css.list}>
 				<ul className={css.clear}>
 					{
@@ -36,7 +37,7 @@ class Nav extends Component{
 										  >
 											{
 												this.state.childrenList.map((item)=>{
-													return <Menu.Item key={item.gc_id} className={css.list} onClick={(e)=>this.navHandleClick.call(this,item.gc_id,e)}>
+													return <Menu.Item key={item.gc_id} className={css.list} onClick={(e)=>this.navHandleClick.call(this,0,0,item.gc_id,item.gc_parent_id,e)}>
 														      <NavLink replace to='/category' rel="noopener noreferrer" href="#">{item.gc_name}</NavLink>
 														    </Menu.Item>		 
 												})
@@ -55,16 +56,12 @@ class Nav extends Component{
 
 				</ul>
 				
-			</div>
-			
+			</div>			
 		</div>
 	}
 
-
-
 	componentWillMount(){
 		axios.get('/pc/pcIndex/class').then(res=>{
-			// console.log(res.data.goodsClass)
 			this.setState({
 				navList:res.data.goodsClass,
 			})
@@ -99,23 +96,28 @@ class Nav extends Component{
 		})
 	}
 	//二级菜单li点击事件
-	navHandleClick(item,e){
-		this.props.NavListidReducer(item);
+	navHandleClick(item,children,parentId,selfId,e){
+		this.props.NavListidReducer(item,children,parentId,selfId);
 		e.domEvent.stopPropagation();
 		e.domEvent.nativeEvent.stopImmediatePropagation();
 
 	}
 
+	componentDidMount(){
+		
+	}
+
 }
 
-
 export default connect(null,{
-	NavListidReducer(item,children){
+	NavListidReducer(item,children,parentId,selfId){
 		return {
 			type:'navId',
 			payload:{
 				id:item,
-				children:children
+				children:children,
+				parentId:parentId,
+				selfId:selfId
 			}
 		}
 	},
