@@ -5,6 +5,12 @@ const action = {
 			type:'toDetail',
 			payload:id
 		}
+	},
+
+	hidenave(){
+		return{
+		type:"HideNav",
+		payload:true}
 	}
 }
 
